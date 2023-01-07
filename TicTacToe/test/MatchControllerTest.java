@@ -24,7 +24,7 @@ public class MatchControllerTest {
         IView view = new ConsoleView(model);
         List<IView> views = new ArrayList<>();
         views.add(view);
-        MatchController testController = new MatchController(playerOne, playerTwo, model, view);
+        MatchController testController = new MatchController(playerOne, playerTwo, model, views);
         testController.play();
     }
 }
