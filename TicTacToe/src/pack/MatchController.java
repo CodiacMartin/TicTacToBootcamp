@@ -1,15 +1,19 @@
 package pack;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatchController {
     private IPlayer playerOne, playerTwo;
     private IModel model;
+    private List<IView> views;
 
-    public MatchController(IPlayer playerOne, IPlayer playerTwo, IModel model) {
+    public MatchController(IPlayer playerOne, IPlayer playerTwo, IModel model, List<IView> views) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
         this.model = model;
+        this.views = views;
     }
 
     public void play() {
@@ -21,7 +25,9 @@ public class MatchController {
             EFieldState currentState = even ? EFieldState.CROSS : EFieldState.CIRCLE;
             model.setFieldState(move.x, move.y, currentState);
             
-            System.out.println(model);
+            for (IView view : views) {
+                view.refresh();
+            }
         }
     }
 }

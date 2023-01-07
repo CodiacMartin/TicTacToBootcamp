@@ -1,4 +1,6 @@
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import pack.*;
 
@@ -19,7 +21,10 @@ public class MatchControllerTest {
         };
         
         IModel model = new Model();
-        MatchController testController = new MatchController(playerOne, playerTwo, model);
+        IView view = new ConsoleView(model);
+        List<IView> views = new ArrayList<>();
+        views.add(view);
+        MatchController testController = new MatchController(playerOne, playerTwo, model, view);
         testController.play();
     }
 }
