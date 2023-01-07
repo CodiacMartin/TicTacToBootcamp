@@ -41,6 +41,7 @@ public class Model implements IModel {
                 result += fieldStates[i][j].getSymbol();
             }
         }
+        result +="\n";
         return result;
     }
 }

@@ -1,7 +1,7 @@
 package pack;
 
 public enum EFieldState {
-    CROSS('x'), CIRCLE('o'), EMPTY(' ');
+    CROSS('x'), CIRCLE('o'), EMPTY('_');
     
     private final char symbol;
     
