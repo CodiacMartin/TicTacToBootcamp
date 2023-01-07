@@ -1,6 +1,6 @@
 import java.awt.Point;
-import pack.IPlayer;
-import pack.MatchController;
+
+import pack.*;
 
 public class MatchControllerTest {
     public static void main(String[] args) {
@@ -18,7 +18,8 @@ public class MatchControllerTest {
             }
         };
         
-        MatchController testController = new MatchController(playerOne, playerTwo);
+        IModel model = new Model();
+        MatchController testController = new MatchController(playerOne, playerTwo, model);
         testController.play();
     }
 }
