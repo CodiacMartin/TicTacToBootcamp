@@ -5,8 +5,10 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 public class TicTacToeBordPanel extends JPanel {
+    private IModel model;
     
-    public TicTacToeBordPanel() {
+    public TicTacToeBordPanel(IModel model) {
+        this.model = model;
        setBackground(Color.YELLOW);
        setPreferredSize(new Dimension(250, 250));
     }
@@ -19,13 +21,27 @@ public class TicTacToeBordPanel extends JPanel {
         
         g2d.setColor(Color.BLACK);
         drawGrid(g2d);
+        drawFieldStates(g2d);
         
-        int x = 0, y = 0;
-        g2d.drawLine(x+10, y+10, x+90, y+90);
-        g2d.drawLine(x+10, y+90, x+90, y+10);
-        x=100;
-        g2d.drawOval(x+10, y+10, 80, 80);
-        
+    }
+
+    private void drawFieldStates(Graphics2D g2d) {
+        final int offset = 10;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                switch (model.getFieldState(j, i)) {
+                case CROSS:
+                    g2d.drawLine(i*100+offset, j*100+offset, i*100+100-offset, j*100+100-offset);
+                    g2d.drawLine(i*100+offset, j*100+100-offset, i*100+100-offset, j*100+offset);
+                    break;
+                case CIRCLE:
+                    g2d.drawOval(i*100+offset, j*100+offset, 100-2*offset, 100-2*offset);
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
     }
 
     private void drawGrid(Graphics2D g2d) {
