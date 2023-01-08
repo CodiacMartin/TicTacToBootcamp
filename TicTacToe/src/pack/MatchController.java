@@ -1,7 +1,6 @@
 package pack;
 
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MatchController {
@@ -20,13 +19,19 @@ public class MatchController {
         for (int i = 0; i < 9; i++) {
             boolean even = i % 2 == 0;
             IPlayer currentPlayer = even ? playerOne : playerTwo;
-            Point move = currentPlayer.getMove(model.toServerString()); //TODO Korrekten String Übergeben
-            
-            EFieldState currentState = even ? EFieldState.CROSS : EFieldState.CIRCLE;
-            model.setFieldState(move.x, move.y, currentState);
-            
-            for (IView view : views) {
-                view.refresh();
+            try {
+                Point move = currentPlayer.getMove(model.toServerString()); //TODO Korrekten String Übergeben
+                
+                EFieldState currentState = even ? EFieldState.CROSS : EFieldState.CIRCLE;
+                model.setFieldState(move.x, move.y, currentState);
+                
+                for (IView view : views) {
+                    view.refresh();
+                }
+            } catch (PlayerException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                System.exit(0);
             }
         }
     }

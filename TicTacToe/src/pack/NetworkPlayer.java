@@ -10,14 +10,13 @@ public class NetworkPlayer implements IPlayer {
     }
 
     @Override
-    public Point getMove(String feld) {
+    public Point getMove(String feld) throws PlayerException {
         try {
             String response = myCom.communicate(feld);
             int intResponse = Integer.parseInt(response.trim()) - 1;
             return new Point(intResponse/3,intResponse%3);
         }catch(CommunicatorException e){
-            System.out.println(e);
-            return null;
+            throw new PlayerException(e);
         }
     }
 }
