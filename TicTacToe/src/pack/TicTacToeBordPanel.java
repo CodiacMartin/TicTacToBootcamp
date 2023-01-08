@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
 
-public class TicTacToeBordPanel extends JPanel {
+public class TicTacToeBordPanel extends JPanel implements IView{
     private IModel model;
     
     public TicTacToeBordPanel(IModel model) {
@@ -64,5 +64,11 @@ public class TicTacToeBordPanel extends JPanel {
         }
         
         g2d.transform(at);
+    }
+
+    @Override
+    public void refresh() {
+        repaint();
+        
     }
 }
